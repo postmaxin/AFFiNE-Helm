@@ -47,9 +47,12 @@ global:
     name: 'affine-doc'
     port: 3020
   deployment:
-    # change to 'selfhosted' and 'unknown' if this chart is ready to be used for selfhosted deployment
-    type: 'affine'
-    platform: 'gcp'
+    # Maps to DEPLOYMENT_TYPE and DEPLOYMENT_PLATFORM environment variables.
+    # 'selfhosted', 'affine', or 'unknown'
+    type: 'selfhosted'
+    # this is referenced in the AFFiNE source, defaulting to 'unknown', but
+    # nothing seems to actually _use_ it.
+    platform: 'unknown'
 
 graphql:
   service:
