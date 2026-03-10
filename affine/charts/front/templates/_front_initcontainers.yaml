@@ -1,0 +1,16 @@
+{{- define "front.initcontainers" -}}
+{{ if .Values.global.app.configMapName -}}
+initContainers:
+- name: {{ .Chart.Name }}-config
+  image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+  imagePullPolicy: {{ .Values.image.pullPolicy }}
+  {{- include "front.env" . | nindent 2 }}
+  resources:
+    {{- toYaml .Values.resources | nindent 4 }}
+  restartPolicy: always
+  command: ['npm', 'run', 'cli', 'import-config', '/etc/config/config']
+  volumeMounts:
+  - name: config
+    mountPath: /etc/config
+{{- end }}
+{{- end }}

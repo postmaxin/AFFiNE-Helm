@@ -1,0 +1,8 @@
+{{- define "front.volumes" -}}
+{{ if .Values.global.app.configMapName -}}
+volumes:
+- name: config
+  configMap:
+    name: "{{ .Values.global.app.configMapName }}"
+{{- end }}
+{{- end }}

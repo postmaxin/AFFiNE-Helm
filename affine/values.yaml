@@ -4,6 +4,10 @@ global:
     # set to 'dev', 'beta', or 'production'.
     # if not set, will use the name of the kubernetes namespace.
     environment: ''
+    # if set, we will load AFFiNE's JSON config from this ConfigMap
+    configMapName: ''
+    # name of the key within `configMapKey` to load
+    configMapKey: 'config'
   ingress:
     enabled: false
     className: ''

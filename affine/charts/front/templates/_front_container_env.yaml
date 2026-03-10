@@ -1,0 +1,33 @@
+{{- define "front.env" -}}
+env:
+{{- include "common.pg-env" . }}
+{{- include "common.redis-env" . }}
+{{- include "common.indexer-env" . }}
+- name: AFFINE_PRIVATE_KEY
+  valueFrom:
+  secretKeyRef:
+    name: "{{ .Values.global.secret.secretName }}"
+    key: key
+- name: NODE_ENV
+  value: "{{ .Values.env }}"
+- name: NODE_OPTIONS
+  value: "{{ .Values.nodeOptions }}"
+- name: NO_COLOR
+  value: "1"
+- name: DEPLOYMENT_TYPE
+  value: "{{ .Values.global.deployment.type }}"
+- name: DEPLOYMENT_PLATFORM
+  value: "{{ .Values.global.deployment.platform }}"
+- name: SERVER_FLAVOR
+  value: "front"
+- name: AFFINE_ENV
+  value: "{{ include "common.environment" . }}"
+- name: AFFINE_SERVER_PORT
+  value: "{{ .Values.app.port }}"
+- name: AFFINE_SERVER_SUB_PATH
+  value: "{{ .Values.app.path }}"
+- name: AFFINE_SERVER_HOST
+  value: "{{ .Values.app.host }}"
+- name: AFFINE_SERVER_HTTPS
+  value: "{{ .Values.app.https }}"
+{{- end }}
