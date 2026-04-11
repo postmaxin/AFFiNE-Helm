@@ -36,7 +36,7 @@ spec:
           - name: NODE_ENV
             value: "{{ .Values.env }}"
           - name: NODE_OPTIONS
-            value: "--max-old-space-size=2048"
+            value: "{{ .Values.nodeOptions }}"
           - name: NO_COLOR
             value: "1"
           - name: DEPLOYMENT_TYPE

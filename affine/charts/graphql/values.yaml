@@ -9,6 +9,8 @@ nameOverride: ''
 fullnameOverride: ''
 # map to NODE_ENV environment variable
 env: 'production'
+# NODE_OPTIONS passed to the graphql server process
+nodeOptions: '--max-old-space-size=2048'
 app:
   # AFFINE_SERVER_SUB_PATH
   path: ''
